@@ -32,6 +32,10 @@ Unity をインストール済み
 * AudioSource
 * AudioListener
 * Camera
+* Canvas
+  * Text
+  * Button
+  * Image
 
 ### Asset
 * Folder
@@ -49,8 +53,10 @@ Unity をインストール済み
 
 ### Script
 * MonoBehaviour
+* [SerializeField]
 * Start
 * Update
+* FixedUpdate
 * GetComponent
 * OnCollisionEnter
 * OnTriggerEnter
@@ -60,3 +66,15 @@ Unity をインストール済み
 * AusioSource.Play
 * AusioSource.PlayOneShot
 * Input.GetKey
+
+## ゲーム仕様
+
+* 起動したらタイトル
+* スペース押してタイトル消えてスコアとアイテムが初期化される
+* "WASD" で玉を操作
+* 玉がアイテムに触れたらスコアが増える
+* スコアが 10 になったらゲームクリア
+* ゲームオーバーかゲームクリアしたらタイトルに戻る
+* 加速タイルに乗ったら玉が加速する
+* 動く足場とかも作る
+* 玉が穴に落ちたらゲームオーバー
