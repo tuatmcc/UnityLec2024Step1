@@ -26,14 +26,21 @@ Unity をインストール済み
     * OnTrigger
 * Prefab
   * Mesh
+    * 別にそんなに深く触れない
   * MeshRenderer
+    * 別にそんなに深く触れない
 * AudioSource
 * AudioListener
 * Camera
 
 ### Asset
 * Folder
+  * 特殊ディレクトリ
+  * はじめは大文字で後は小文字
 * Script
+  * ファイル作成時にファイル名とクラス名に気をつける
+    * クラス名はファイル名と同じにする
+    * すべて英文字
 * Texture
 * Material
 * AudioClip
