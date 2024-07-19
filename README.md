@@ -11,6 +11,7 @@ Unity をインストール済み
 
 ## 学ぶこと
 
+### Component
 * Transform
   * 座標移動
     * Quaternion は詳しく触れない
@@ -24,14 +25,31 @@ Unity をインストール済み
     * OnCollision
     * OnTrigger
 * Prefab
-* Audio
-  * AudioSource
-  * AudioClip
-  * AudioListener
+  * Mesh
+  * MeshRenderer
+* AudioSource
+* AudioListener
 * Camera
+
+### Asset
+* Folder
 * Script
-  * MonoBehaviour
-  * Update
-  * Start
+* Texture
+* Material
+* AudioClip
+* Prefab
+* Scene
 
-
+### Script
+* MonoBehaviour
+* Start
+* Update
+* GetComponent
+* OnCollisionEnter
+* OnTriggerEnter
+* Instantiate
+* Destroy
+* AddForce
+* AusioSource.Play
+* AusioSource.PlayOneShot
+* Input.GetKey
