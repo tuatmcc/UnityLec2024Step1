@@ -113,14 +113,30 @@ author: "sugawa197203"
 以下のタブが見えています。
 
 * Scene
+  * シーンを編集する
 * Game
+  * レンダリングされたゲーム画面
 * Hierarchy
+  * シーンに配置されたオブジェクトのリスト
 * Project
+  * プロジェクトのファイル一覧(エクスプローラーのようなもの)
 * Inspector
+  * 選択したオブジェクトのプロパティ
 * Console
+  * ログの表示
+
+![tab](./img/2.1.3.webp)
 
 # 3. フィールドを作る
 
 ここでは、玉転がしゲームのフィールドを作ります
 
 ## 3.1. 地面を作る
+
+Hierarchyで右クリック -> 3D Object -> Plane を選択
+
+![Plane](./img/3.1.1.webp)
+
+Hierarchyに`Plane`が追加され、板が現れました！
+
+![Plane](./img/3.1.2.webp)
