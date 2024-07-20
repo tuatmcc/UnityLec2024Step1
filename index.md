@@ -91,14 +91,17 @@ author: "sugawa197203"
 
 ## 2.1. Unity Hub でプロジェクトを作る
 
-* Unity Hub を起動
+1. Unity Hub を起動
   * `New Project` ボタンを押す
-
-* `Universal 3D` を選択
+2. `Universal 3D` を選択
   * `Project Name` は自由 (写真の例では `RollingBall` と入力)
-* `location` は自由 (特に気にしなければそのままで OK )
-* `Connect to Unity Cloud` はチェックを外す
-* `Use Unity Version Control` はチェックを外す
-* `Create project` ボタンを押す
+3. `location` は自由 (特に気にしなければそのままで OK )
+4. `Connect to Unity Cloud` はチェックを外す
+5. `Use Unity Version Control` はチェックを外す
+6. `Create project` ボタンを押す
 
 ![Unity Hub でプロジェクトを作る](./img/2.1.1.webp)
+
+7. こんな感じに鳴ってればOK
+
+![Unity Hub でプロジェクトを作る](./img/2.1.2.webp)
