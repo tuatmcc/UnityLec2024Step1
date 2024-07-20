@@ -92,9 +92,13 @@ author: "sugawa197203"
 ## 2.1. Unity Hub でプロジェクトを作る
 
 1. Unity Hub を起動
-  * `New Project` ボタンを押す
+
+* `New Project` ボタンを押す
+
 2. `Universal 3D` を選択
-  * `Project Name` は自由 (写真の例では `RollingBall` と入力)
+
+* `Project Name` は自由 (写真の例では `RollingBall` と入力)
+
 3. `location` は自由 (特に気にしなければそのままで OK )
 4. `Connect to Unity Cloud` はチェックを外す
 5. `Use Unity Version Control` はチェックを外す
@@ -105,3 +109,18 @@ author: "sugawa197203"
 7. こんな感じに鳴ってればOK
 
 ![Unity Hub でプロジェクトを作る](./img/2.1.2.webp)
+
+以下のタブが見えています。
+
+* Scene
+* Game
+* Hierarchy
+* Project
+* Inspector
+* Console
+
+# 3. フィールドを作る
+
+ここでは、玉転がしゲームのフィールドを作ります
+
+## 3.1. 地面を作る
