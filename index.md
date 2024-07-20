@@ -140,3 +140,16 @@ Hierarchyで右クリック -> 3D Object -> Plane を選択
 Hierarchyに`Plane`が追加され、板が現れました！
 
 ![Plane](./img/3.1.2.webp)
+
+Hierarchyで`Plane`を選択すると、Inspectorに`Plane`のプロパティが表示されます。
+
+`Plane`には`Trasform`, `Mesh Filter`, `Mesh Renderer`, `Mesh Collider`の要素(Component)がついています。それぞれの役針は以下の通りです。
+
+* Transform
+  * 座標や傾きといった3D空間の位置情報プロパティ
+
+* Mesh Filter, Mesh Renderer
+  * レンダリングに関するプロパティ
+
+* Collider (Mesh Collider)
+  * 3Dモデルに当たり判定をつけるプロパティ
