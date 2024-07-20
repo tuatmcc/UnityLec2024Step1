@@ -154,6 +154,9 @@ Hierarchyで`Plane`を選択すると、Inspectorに`Plane`のプロパティが
 * Collider (Mesh Collider)
   * 3Dモデルに当たり判定をつけるプロパティ
 
+* (Material)
+  * マテリアルを設定するプロパティ
+
 ## 3.2. ボールを作る
 
 Hierarchyで右クリック -> 3D Object -> Sphere を選択
