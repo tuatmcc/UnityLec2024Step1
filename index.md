@@ -86,3 +86,19 @@ author: "sugawa197203"
 * 加速タイルに乗ったら玉が加速する
 * 動く足場とかも作る
 * 玉が穴に落ちたらゲームオーバー
+
+# 2. プロジェクトを作る
+
+## 2.1. Unity Hub でプロジェクトを作る
+
+* Unity Hub を起動
+  * `New Project` ボタンを押す
+
+* `Universal 3D` を選択
+  * `Project Name` は自由 (写真の例では `RollingBall` と入力)
+* `location` は自由 (特に気にしなければそのままで OK )
+* `Connect to Unity Cloud` はチェックを外す
+* `Use Unity Version Control` はチェックを外す
+* `Create project` ボタンを押す
+
+![Unity Hub でプロジェクトを作る](./img/2.1.1.webp)
