@@ -153,3 +153,27 @@ Hierarchyで`Plane`を選択すると、Inspectorに`Plane`のプロパティが
 
 * Collider (Mesh Collider)
   * 3Dモデルに当たり判定をつけるプロパティ
+
+## 3.2. ボールを作る
+
+Hierarchyで右クリック -> 3D Object -> Sphere を選択
+
+![Sphere](./img/3.2.1.webp)
+
+このままでは地面にめり込んでいるので、`Trasform`の`Position`を(0, 5, 0)に変更します。
+
+![Sphere](./img/3.2.2.webp)
+
+いい感じの位置になりました！
+
+![Sphere](./img/3.2.3.webp)
+
+# 4. ボールを重力で落下させる
+
+ここでは、ボールを重力で落下させます。
+
+## 4.1. Rigidbody を追加する
+
+`Hierarchy`で`Sphere`を選択し、`Inspector`で下の方にある`Add Component` -> `Physics` -> `Rigidbody` をクリック
+
+![Rigidbody](./img/4.1.1.webp)
