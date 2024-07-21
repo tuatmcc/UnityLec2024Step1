@@ -177,6 +177,18 @@ Hierarchyで右クリック -> 3D Object -> Sphere を選択
 
 ## 4.1. Rigidbody を追加する
 
+ゲームオブジェクトに物理演算を追加するには、Unity の物理演算の要素の `Rigidbody` を追加します。
+
 `Hierarchy`で`Sphere`を選択し、`Inspector`で下の方にある`Add Component` -> `Physics` -> `Rigidbody` をクリック
 
 ![Rigidbody](./img/4.1.1.webp)
+
+`Sphere`に`Rigidbody`が追加されました！
+
+![Rigidbody](./img/4.1.2.webp)
+
+上の方にある再生ボタンを押してみてください。ボールが落下します。
+
+![Rigidbody](./img/4.1.1.gif)
+
+ボールが自由落下するのを確認できたら、必ず再生ボタンを押して再生を停止してください。
