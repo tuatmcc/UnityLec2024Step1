@@ -304,3 +304,70 @@ Project にある `BallController` を `Sphere` にドラッグアンドドロ�
 Prefab とは、ゲームオブジェクトの設計図のようなものです。ゲームオブジェクトそのものではありません。
 
 `Score` の Prefab が作成できたら、 Hierarchy にある `Score` を削除してください。削除は、ゲームオブジェクトを選択して Delete キーを押すか、右クリックして `Delete` を選択して削除できます。
+
+## 6.2. ScoreManager を作成する
+
+得点のオブジェクトを生成するスクリプトを作成します。
+
+`Project`タブで右クリック -> `Create` -> `C# Script` を選択
+
+スクリプトの名前を `ScoreManager` に変更してください。
+
+![Create Script](./img/6.2.1.webp)
+
+`ScoreManager` をダブルクリックして開いてください。
+
+以下のようにスクリプトを書き換えてください。プログラムの説明は後で行います。
+
+```csharp title="ScoreManager.cs" showLineNumbers
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ScoreManager : MonoBehaviour
+{
++   [SerializeField] private GameObject ScoreObject;
++   [SerializeField] private int ScoreAmount = 10;
+
+    // Start is called before the first frame update
+    void Start()
+    {
++       for (int i = 0; i < ScoreAmount; i++)
++       {
++           float x = Random.Range(-10, 10);
++           float z = Random.Range(-10, 10);
++           Instantiate(ScoreObject, new Vector3(x, 0.5f, z), Quaternion.identity);
++       }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
+```
+
+Hierarchy で右クリック -> `Create Empty` を選択
+
+ゲームオブジェクト名を `ScoreManager` に変更してください。
+
+![Create Empty](./img/6.2.2.webp)
+
+EnptyObject は、コンポーネントが何もついていないゲームオブジェクトです。このゲームオブジェクトに`ScoreManager`をアタッチします。
+
+`ScoreManager` を Project から Hierarchy にドラッグアンドドロップしてください。そして、`ScoreManager` の Inspector にある `Score Object` に `Score` の Prefab をドラッグアンドドロップしてください。
+
+![Attach Script](./img/6.2.3.webp)
+
+再生ボタンを押してみてください。ステージ上にランダムな位置に `Score` が生成されることがわかります。
+
+![Create Score](./img/6.2.4.webp)
+
+確認ができたら、再生ボタンを押して再生を停止してください。
+
+少し Score が大きいので、 `Score` の `Scale` を (0.3, 0.3, 0.3) に変更してください。
+
+![Scale](./img/6.2.5.webp)
+
+![Scale](./img/6.2.1.gif)
