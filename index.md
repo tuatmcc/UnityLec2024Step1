@@ -438,3 +438,13 @@ public class CameraController : MonoBehaviour
 ![Camera](./img/6.4.1.gif)
 
 確認ができたら、再生ボタンを押して再生を停止してください。
+
+## 6.5. スクリプトの説明
+
+`CameraController` をダブルクリックして開いてください。
+
+変数 `PlayerObject` は `Transform` 型の変数です。`Sphere` の Transform コンポーネントを代入することで、その Transform を**参照**できます。
+
+変数 `offset` は `Vector3` 型の変数です。カメラの位置を調整するための変数です。`PlayerObject` の位置に `offset` を加えた位置にカメラを移動させます。
+
+`transform.position` は、そのスクリプトをアタッチしたゲームオブジェクトの位置を表します。ここでは、`PlayerObject` の位置に `offset` を加えた位置にカメラを移動させています。
