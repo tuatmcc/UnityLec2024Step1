@@ -392,4 +392,49 @@ EnptyObject は、コンポーネントが何もついていないゲームオ�
 
 ここでは、カメラをボールに追従させます。
 
-`CameraController` という名前でスクリプトを作成してください。
+`CameraController` という名前のスクリプトを作成して、以下のように書き換えてください。
+
+```csharp title="CameraController.cs" showLineNumbers
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraController : MonoBehaviour
+{
+    // Start is called before the first frame update
+
++   [SerializeField] private Transform PlayerObject;
++   [SerializeField] private Vector3 offset;
+
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
++       transform.position = PlayerObject.position + offset;
+    }
+}
+```
+
+`CameraController` をドラッグアンドドロップで `Main Camera` にアタッチしてください。
+
+そして、`Main Camera` の Inspector にある `Player Object` に `Sphere` をドラッグアンドドロップしてください。
+
+![Attach Script](./img/6.4.1.webp)
+
+`Main Camera` の Inspector にある `CameraController` コンポーネントの `Offset` を (0, 5, -10) に変更してください。
+
+![Offset](./img/6.4.2.webp)
+
+また、 `Main Camera` の Transform の Position を (0, 10, -10), Rotation を (30, 0, 0) に変更してください。
+
+![Position](./img/6.4.3.webp)
+
+再生ボタンを押してみてください。カメラがボールに追従させることができました。
+
+![Camera](./img/6.4.1.gif)
+
+確認ができたら、再生ボタンを押して再生を停止してください。

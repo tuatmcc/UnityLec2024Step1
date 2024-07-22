@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
         for (int i = 0; i < ScoreAmount; i++)
 		{
             float x = Random.Range(-10.0f, 10.0f);
-            float z = Random.Range(-10.0f,  );
+            float z = Random.Range(-10.0f, 10.0f);
             Instantiate(ScoreObject, new Vector3(x, 0.5f, z), Quaternion.identity);
 		}
     }
