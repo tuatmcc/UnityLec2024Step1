@@ -222,7 +222,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class BallController : MonoBehaviour
 {
 +   private Rigidbody rb;
 
@@ -254,6 +254,8 @@ public class PlayerController : MonoBehaviour
     }
 }
 ```
+
+5行目の `public class BallController : MonoBehaviour` の部分で、 `class` の後が `BallController` になっていることを確認してください。大文字小文字、全角半角の違いにも注意してください。
 
 ## 5.3. スクリプトを Sphere にアタッチする
 
