@@ -192,3 +192,89 @@ Hierarchyで右クリック -> 3D Object -> Sphere を選択
 ![Rigidbody](./img/4.1.1.gif)
 
 ボールが自由落下するのを確認できたら、必ず再生ボタンを押して再生を停止してください。
+
+# 5. ボールを操作する
+
+ここでは、ボールを操作するためのスクリプトを作成します。
+
+## 5.1. スクリプトを作成する
+
+`Project`タブで右クリック -> `Create` -> `C# Script` を選択
+
+![Create Script](./img/5.1.1.webp)
+
+このとき、ファイル名を `BallController` に変更してください。
+
+![Create Script](./img/5.1.2.webp)
+
+`BallController`　をダブルクリックして開くと、visual studio が起動します。(※このとき、visual studio が起動しなかった場合、TAの人にお知らせください)
+
+![Create Script](./img/5.1.3.webp)
+
+`BallController.cs` が開かれていることを確認してください。`.cs` は C# の拡張子です。(C言語だと`.c`, C++だと`.cpp`, pythonだと`.py`)
+
+## 5.2. スクリプトを書き換える
+
+以下のようにスクリプトを書き換えてください。プログラムの説明は後で行います。
+
+```csharp
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
++   private Rigidbody rb;
+
+    // Start is called before the first frame update
+    void Start()
+    {
++       rb = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
++       if(Input.GetKey(KeyCode.W))
++       {
++           rb.AddForce(new Vector3(0, 0, 1));
++       }
++       if(Input.GetKey(KeyCode.S))
++       {
++           rb.AddForce(new Vector3(0, 0, -1));
++       }
++       if(Input.GetKey(KeyCode.A))
++       {
++           rb.AddForce(new Vector3(-1, 0, 0));
++       }
++       if(Input.GetKey(KeyCode.D))
++       {
++           rb.AddForce(new Vector3(1, 0, 0));
++       }
+    }
+}
+```
+
+## 5.3. スクリプトを Sphere にアタッチする
+
+Project にある `BallController` を `Sphere` にドラッグアンドドロップしてください。
+
+![Attach Script](./img/5.3.1.webp)
+
+すると、`Sphere` の Inspector に `BallController` がコンポーネントとして追加されるのがわかります。これで、スクリプトをゲームオブジェクトにアタッチできました。
+
+## 5.4. ゲームを再生してみる
+
+再生ボタンを押してみてください。`W`, `A`, `S`, `D` キーを押すと、ボールが前後左右に動くことがわかります。(周りに壁とか無いから落ちるけど...)
+
+![Move Ball](./img/5.4.1.gif)
+
+# 5.5. プログラムの説明
+
+`BallController` をダブルクリックして開いてください。
+
+変数 `rb` は `Rigidbody` 型の変数です。任意のゲームオブジェクトに付いている `Rigidbody` コンポーネントを代入することで、その `Rigidbody` を**参照**できます。
+
+`Start` 関数は、再生ボタンを押したら最初に一度だけ実行される関数です。 Unity が呼び出してくれます。ここでは、Start 関数の中で、そのスクリプトがアタッチしている `Rigidbody` コンポーネントを `GetComponent` 関数で取得しています。`GetComponent` 関数は、アタッチしているゲームオブジェクトの指定したコンポーネントを取得する関数です。ここでは、`Rigidbody` コンポーネントを指定しています。
+
+`Update` 関数は、再生ボタンを押したら毎フレーム実行される関数です。 Unity が呼び出してくれます。ここでは、 `Input.GetKey` 関数を使って、引数で指定されたキーボードのキーが入力されたかをif文で判定し、入力されたら `Rigidbody` の `AddForce` 関数を使って、ボールに力を加えています。 `Input.GetKey` 関数では、引数で指定されたキーボードのキーが押されている間、true を返します。そうでなければ、false を返します。 `AddForce` 関数は、引数で指定された方向に力を加えます。`w` キーが押されたら、Z軸に対して正の方向、`s` キーが押されたら、Z軸に対して負の方向、`a` キーが押されたら、X軸に対して負の方向、`d` キーが押されたら、X軸に対して正の方向に力を加えます。力の大きさはそれぞれ 1 です。`new Vector3` で Unity のベクトル情報を生成し、`AddForce` 関数の引数に渡しています。
