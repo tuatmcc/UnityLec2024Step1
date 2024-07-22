@@ -217,7 +217,7 @@ Hierarchyで右クリック -> 3D Object -> Sphere を選択
 
 以下のようにスクリプトを書き換えてください。プログラムの説明は後で行います。
 
-```csharp
+```csharp title="BallController.cs" showLineNumbers
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
