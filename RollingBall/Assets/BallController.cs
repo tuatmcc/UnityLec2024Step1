@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     private Rigidbody rb;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,4 +36,14 @@ public class BallController : MonoBehaviour
             rb.AddForce(new Vector3(1, 0, 0));
 		}
     }
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if(collision.gameObject.name == "Score(Clone)")
+		{
+			score++;
+			Debug.Log("Score: " + score);
+			Destroy(collision.gameObject);
+		}
+	}
 }
