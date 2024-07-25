@@ -37,13 +37,14 @@ public class BallController : MonoBehaviour
 		}
     }
 
-	private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
+	//private void OnCollisionEnter(Collision collision)
 	{
-		if(collision.gameObject.name == "Score(Clone)")
+		if(other.gameObject.name == "Score(Clone)")
 		{
 			score++;
 			Debug.Log("Score: " + score);
-			Destroy(collision.gameObject);
+			Destroy(other.gameObject);
 		}
 	}
 }

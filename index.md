@@ -524,3 +524,83 @@ public class BallController : MonoBehaviour
 変数 `score` は `int` 型の変数です。得点を保持します。
 
 `OnCollisionEnter` 関数は、ゲームオブジェクトが他のゲームオブジェクトに衝突したときに呼び出される関数です。ここでは、引数で渡された `Collision` 型の変数 `collision` に衝突したゲームオブジェクトの情報が入っています。`collision.gameObject.name` で衝突したゲームオブジェクトの名前を取得できます。ここでは、`collision.gameObject.name` が `Score(Clone)` だったら、得点を加算し、コンソールに現在のスコアを表示し、衝突したゲームオブジェクトを削除しています。`Debug.Log` 関数は、コンソールにログを表示する関数です。C#では便利なことに、文字列型と数値型を足すと、自動的に文字列連結になります。`Destroy` 関数は、引数で指定されたゲームオブジェクトを削除します。ここでは、衝突したゲームオブジェクト(Score)を削除しています。
+
+# 8. ステージの調整
+
+ここでは、ステージを調整します。
+
+`Plane` の `Scale` を (5, 1, 5) に変更してください。
+
+![Scale](./img/8.1.1.webp)
+
+ステージの壁も作りましょう。`Hierarchy`で右クリック -> `3D Object` -> `Cube` を選択。名前は `Wall` に変更してください。そして 4 方向分作るので、`Wall` を選択したまま `Ctrl + D` で複製してください。以下の画像のようになります。
+
+![Wall](./img/8.1.2.webp)
+
+4 つの Wall の Position と Scale をそれぞれ以下のように変更してください。(写真は1つ目)
+
+* Position (0, 1.5, 20), Scale (40, 3, 1)
+* Position (0, 1.5, -20), Scale (40, 3, 1)
+* Position (20, 1.5, 0), Scale (1, 3, 40)
+* Position (-20, 1.5, 0), Scale (1, 3, 40)
+
+![Wall](./img/8.1.3.webp)
+
+また、今のままでは、スコアにふれると一瞬ボールの動きが止まってしまいます。これは物理演算をするための当たり判定もあるためです。そこで、Project にある `Score` プレバブの `Box Collider` の `Is Trigger` にチェックを入れてください。そして、`BallController` の `OnCollisionEnter` 関数を `OnTriggerEnter` 関数に変更してください。
+
+```csharp title="BallController.cs" showLineNumbers /other/
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BallController : MonoBehaviour
+{
+    private Rigidbody rb;
+    private int score = 0;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.W))
+        {
+            rb.AddForce(new Vector3(0, 0, 1));
+        }
+
+        if(Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(new Vector3(0, 0, -1));
+        }
+
+        if(Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(new Vector3(-1, 0, 0));
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(new Vector3(1, 0, 0));
+        }
+    }
+
++   private void OnTriggerEnter(Collider other)
+-   private void OnCollisionEnter(Collision collision)
+    {
+        if(other.gameObject.name == "Score(Clone)")
+        {
+            score++;
+            Debug.Log("Score: " + score);
+            Destroy(other.gameObject);
+        }
+    }
+}
+```
+
+再生ボタンを押してみてください。スコアにふれてもボールの動きが止まらなくなりました。
+
+![Wall](./img/8.1.1.gif)
