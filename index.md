@@ -604,3 +604,105 @@ public class BallController : MonoBehaviour
 再生ボタンを押してみてください。スコアにふれてもボールの動きが止まらなくなりました。
 
 ![Wall](./img/8.1.1.gif)
+
+確認ができたら、再生ボタンを押して再生を停止してください。
+
+## 8.1. スクリプトの説明
+
+Collision は、物理演算をするための当たり判定を持っています。OnCollisionEnter は、物理演算をするための当たり判定があるゲームオブジェクトが他のゲームオブジェクトに衝突したときに呼び出される関数です。 Trigger は、物理演算をするための当たり判定を持っていません。OnTriggerEnter は、Trigger があるゲームオブジェクトが他のゲームオブジェクトに触れたときに呼び出される関数です。
+
+# 9. スコアを表示する
+
+ここでは、スコアを表示する UI を作成します。
+
+## 9.1. テキストの追加
+
+`Hierarchy`で右クリック -> `UI` -> `Legacy` -> `Text` を選択
+
+![Text](./img/9.1.1.webp)
+
+Canvas の子要素として `Text` が追加されました。 Game タブの真ん中の方に `New Text` というテキストが表示しているのがわかります。
+
+![Text](./img/9.1.2.webp)
+
+Canvas とは、 Unity で UI を使うときに必要なゲームオブジェクトです。UI を表示するためのゲームオブジェクトを Canvas の子要素として追加することで、画面に UI を表示できます。
+
+## 9.2. テキストの調整
+
+`Text` の Position を (-470, 242, 0)、 `Text` を `Score: 0`、Font Size を 27 に変更してください。 Color では好きな色にすることができます。
+
+![Text](./img/9.2.1.webp)
+
+これで、左上の方にスコアが表示されるようになりました。
+
+![Text](./img/9.2.2.webp)
+
+## 9.3. スコアを表示するスクリプトを作成する
+
+`BallController` にスコアを表示するスクリプトを追加します。
+
+```csharp title="BallController.cs" showLineNumbers
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
++ using UnityEngine.UI;
+
+public class BallController : MonoBehaviour
+{
+    private Rigidbody rb;
+    private int score = 0;
++   [SerializeField] private Text scoreText;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody();
++       scoreText.text = "Score: " + score;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.W))
+        {
+            rb.AddForce(new Vector3(0, 0, 1));
+        }
+
+        if(Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(new Vector3(0, 0, -1));
+        }
+
+        if(Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(new Vector3(-1, 0, 0));
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(new Vector3(1, 0, 0));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Score(Clone)")
+        {
+            score++;
+            Debug.Log("Score: " + score);
+            Destroy(other.gameObject);
++           scoreText.text = "Score: " + score;
+        }
+    }
+}
+```
+
+Hierarchy にある `Sphere` を選択し、`BallController` の Inspector にある `Score Text` に `Text` をドラッグアンドドロップしてください。
+
+![Attach Script](./img/9.3.1.webp)
+
+再生ボタンを押してみてください。スコアが表示されることを確認してください。取るたびにスコアが増えていくことがわかります。
+
+![Text](./img/9.3.1.gif)
+
+確認ができたら、再生ボタンを押して再生を停止してください。

@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallController : MonoBehaviour
 {
     private Rigidbody rb;
     private int score = 0;
+    [SerializeField] private Text scoreText;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
@@ -45,6 +47,7 @@ public class BallController : MonoBehaviour
 			score++;
 			Debug.Log("Score: " + score);
 			Destroy(other.gameObject);
+			scoreText.text = "Score: " + score;
 		}
 	}
 }
