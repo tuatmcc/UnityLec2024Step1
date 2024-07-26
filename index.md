@@ -706,3 +706,21 @@ Hierarchy にある `Sphere` を選択し、`BallController` の Inspector に�
 ![Text](./img/9.3.1.gif)
 
 確認ができたら、再生ボタンを押して再生を停止してください。
+
+## 9.4. スクリプトの説明
+
+`BallController` をダブルクリックして開いてください。
+
+`using UnityEngine.UI;` は、UI を使うためのおまじないです。
+
+変数 `scoreText` は `Text` 型の変数です。`Text` コンポーネントを代入することで、その `Text` を**参照**できます。
+
+`scoreText.text` は、`Text` コンポーネントの `text` プロパティを表します。ここでは、`scoreText.text` に `Score: 0` を代入しています。これで、最初にスコアが `Score: 0` として表示されます。
+
+`scoreText.text` に `Score: + score` を代入することで、スコアが更新され、スコアが表示されます。
+
+# 10. ゲームタイトルシーンを作成する
+
+ここでは、ゲームのタイトルシーンを作成します。
+
+`Scene`
