@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BallController : MonoBehaviour
@@ -42,12 +43,16 @@ public class BallController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
 	//private void OnCollisionEnter(Collision collision)
 	{
-		if(other.gameObject.name == "Score(Clone)")
+		if (other.gameObject.name == "Score(Clone)")
 		{
 			score++;
 			Debug.Log("Score: " + score);
 			Destroy(other.gameObject);
 			scoreText.text = "Score: " + score;
+			if (score == 10)
+			{
+				SceneManager.LoadScene("GameClear");
+			}
 		}
 	}
 }

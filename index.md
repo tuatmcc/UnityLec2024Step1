@@ -723,4 +723,287 @@ Hierarchy にある `Sphere` を選択し、`BallController` の Inspector に�
 
 ここでは、ゲームのタイトルシーンを作成します。
 
-`Scene`
+Scene とは、 Unity でゲームを作るときに必要なゲームオブジェクトや設定を保存するためのファイルです。 Scene は、ゲームのステージやメニュー画面など、ゲームの一部分を表します。今まで作成したステージは、`SampleScene` という名前の Scene に保存されています。 Project タブの `Assets/Scences` の中に `SampleScene` という名前の Scene があるのがわかります。
+
+## 10.1. ゲームタイトルシーンを作成する
+
+Project -> `Assets/Scenes` で右クリック -> `Create` -> `Scene` を選択
+
+![Create Scene](./img/10.1.1.webp)
+
+Scene の名前を `Title` に変更してください。そして、`Title` をダブルクリックして開いてください。
+
+![Create Scene](./img/10.1.2.webp)
+
+シーンを作成したら、 `Build Settings` で `Title` シーンを追加してください。
+
+File -> `Build Settings` を選択し、`Add Open Scenes` をクリックして `Title` シーンを追加してください。
+
+![Build Settings](./img/10.1.3.webp)
+
+## 10.2. タイトル
+
+`Hierarchy`で右クリック -> `UI` -> `Legacy` -> `Text` を選択
+
+オブジェクト名は `Title` に変更してください。そして、`Title` の Position を (0, 0, 0) に変更してください。`Title` の Text を `RollingBall` 、Font Size を 50 、Hight と Width を (250, 270) になるように調整してください。
+
+![Title](./img/10.2.1.webp)
+
+## 10.3. スタートボタン
+
+`Hierarchy`で右クリック -> `UI` -> `Legacy` -> `Button` を選択
+
+オブジェクト名は `StartButton` に変更してください。そして、`StartButton` の Position を (0, -50, 0) に変更してください。`StartButton` の Text を `Start` に変更してください。
+
+Hierarchy で　`StartButton` の子オブジェクトに、ボタンのテキストがあります。このテキストの `Text` を `Start` に変更してください。
+
+![StartButton](./img/10.3.1.webp)
+
+## 10.4. シーン遷移
+
+`Assets` で右クリック -> `Create` -> `C# Script` を選択
+
+スクリプトの名前を `TitleManager` に変更してください。
+
+`TitleManager` をダブルクリックして開いてください。
+
+以下のようにスクリプトを書き換えてください。
+
+```csharp title="TitleManager.cs" showLineNumbers
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
++ using UnityEngine.SceneManagement;
+
+public class TitleManager : MonoBehaviour
+{
++   public void OnButtonClicked()
++   {
++       SceneManager.LoadScene("SampleScene");
++   }
+}
+```
+
+Hierarchy で右クリック -> `Create Empty` を選択
+
+オブジェクト名は `TitleManager` に変更してください。そして、`TitleManager` に `TitleManager` をアタッチしてください。
+
+![TitleManager](./img/10.4.1.webp)
+
+`StartButton` を選択し、`Inspector` で Buttonコンポーネントの `On Click()` の右下の方にある `+` をクリック。左下には Hierarchy の `TitleManager` をドラッグアンドドロップ。そして `NoFunction` をクリックしての `TitleManager -> OnButtonClicked` を選択してください。
+
+![Button](./img/10.4.2.webp)
+
+再生ボタンを押してみてください。タイトル画面が表示され、`Start` ボタンを押すと、ゲーム画面に遷移します。
+
+![Title](./img/10.4.1.gif)
+
+確認ができたら、再生ボタンを押して再生を停止してください。
+
+Title シーンから SampleScene シーンに遷移することができました。
+
+# 10.5. スクリプトの説明
+
+`TitleManager` をダブルクリックして開いてください。
+
+`using UnityEngine.SceneManagement;` は、シーンを使うためのおまじないです。
+
+`SceneManager.LoadScene` 関数は、引数で指定されたシーンに遷移します。ここでは、`SampleScene` に遷移しています。
+
+`public void OnButtonClicked()` は、`StartButton` がクリックされたときに呼び出される関数です。これは、`StartButton` の `Button` コンポーネントの `On Click()` に設定したためです。よって、`StartButton` がクリックされたときに、`SceneManager.LoadScene` 関数を呼び出して、`SampleScene` に遷移します。
+
+# 11. ゲームクリアを作成する
+
+ここでは、ゲームクリアのシーンを作成します。
+
+## 11.1. ゲームクリアシーンを作成する
+
+Project -> `Assets/Scenes` で右クリック -> `Create` -> `Scene` を選択
+
+Scene の名前を `GameClear` に変更してください。そして、`GameClear` をダブルクリックして開いてください。
+
+![Create Scene](./img/11.1.1.webp)
+
+File -> `Build Settings` を選択し、`Add Open Scenes` をクリックして `GameClear` シーンを追加してください。
+
+Hierarchy で右クリック -> `UI` -> `Legacy` -> `Text` を選択
+
+オブジェクト名は `GameClear` に変更してください。そして、`GameClear` の Position を (0, 0, 0) に変更してください。`GameClear` の Text を `Game Clear` 、Font Size を 50 、Hight と Width を (300, 270) になるように調整してください。
+
+![GameClear](./img/11.1.2.webp)
+
+## 11.2. シーン遷移
+
+クリアシーンでクリックするとタイトル画面に遷移するようにします。
+
+`Assets` で右クリック -> `Create` -> `C# Script` を選択
+
+スクリプトの名前を `GameClearManager` に変更してください。
+
+`GameClearManager` をダブルクリックして開いてください。
+
+以下のようにスクリプトを書き換えてください。
+
+```csharp title="GameClearManager.cs" showLineNumbers
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
++ using UnityEngine.SceneManagement;
+
+public class GameClearManager : MonoBehaviour
+{
++   public void OnButtonClicked()
++   {
++       SceneManager.LoadScene("Title");
++   }
+}
+```
+
+Hierarchy で右クリック -> `Create Empty` を選択
+
+オブジェクト名は `GameClearManager` に変更してください。そして、`GameClearManager` に `GameClearManager` をアタッチしてください。
+
+Hierarchy で右クリック -> `UI` -> `Legacy` -> `Button` を選択
+
+オブジェクト名は `GameClearButton` に変更してください。そして、`GameClearButton` の Position を (0, -50, 0) に変更してください。`GameClearButton` の Text を `Title` に変更してください。
+
+`GameClearButton` を選択し、`Inspector` で Buttonコンポーネントの `On Click()` の右下の方にある `+` をクリック。左下には Hierarchy の `GameClearManager` をドラッグアンドドロップ。そして `NoFunction` をクリックしての `GameClearManager -> OnButtonClicked` を選択してください。
+
+![Button](./img/11.2.1.webp)
+
+再生ボタンを押してみてください。ゲームクリア画面が表示され、`Title` ボタンを押すと、タイトル画面に遷移します。
+
+![GameClear](./img/11.2.1.gif)
+
+確認ができたら、再生ボタンを押して再生を停止してください。
+
+GameClear シーンから Title シーンに遷移することができました。
+
+# 11.3. スコアをすべて取ったらゲームクリアにする
+
+`BallController` にゲームクリアの処理を追加します。
+
+```csharp title="BallController.cs" showLineNumbers
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
++ using UnityEngine.SceneManagement;
+
+public class BallController : MonoBehaviour
+{
+    private Rigidbody rb;
+    private int score = 0;
+    [SerializeField] private Text scoreText;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody();
+        scoreText.text = "Score: " + score;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.W))
+        {
+            rb.AddForce(new Vector3(0, 0, 1));
+        }
+
+        if(Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(new Vector3(0, 0, -1));
+        }
+
+        if(Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(new Vector3(-1, 0, 0));
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(new Vector3(1, 0, 0));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Score(Clone)")
+        {
+            score++;
+            Debug.Log("Score: " + score);
+            Destroy(other.gameObject);
+            scoreText.text = "Score: " + score;
++           if(score == 10)
++           {
++               SceneManager.LoadScene("GameClear");
++           }
+        }
+    }
+}
+```
+
+再生ボタンを押してみてください。スコアが 10 になると、ゲームクリア画面に遷移します。
+
+![GameClear](./img/11.3.1.gif)
+
+確認ができたら、再生ボタンを押して再生を停止してください。
+
+これで、ゲームの一連の流れが完成しました。
+
+# 12. マテリアルで見た目
+
+ここでは、マテリアルを使って見た目を変更します。
+
+## 12.1. スコアの見た目を変更する
+
+`SampleScene` を開いてください。
+
+Project で右クリック -> `Create` -> `Material` を選択
+
+マテリアルの名前を `ScoreMaterial` に変更してください。
+
+![Material](./img/12.1.1.webp)
+
+`ScoreMaterial` を選択し、`Inspector` で `Base Map` の色を好きな色に変更してください。(例では黄色っぽい色にしてみました)
+
+![Material](./img/12.1.2.webp)
+
+`Score` プレバブに `ScoreMaterial` をドラッグアンドドロップしてください。
+
+![Material](./img/12.1.3.webp)
+
+再生ボタンを押してみてください。スコアの色が変わっていることがわかります。
+
+![Material](./img/12.1.4.webp)
+
+確認ができたら、再生ボタンを押して再生を停止してください。
+
+## 12.2. ボールの見た目を変更する
+
+以下のテクスチャをボールに貼り付けてみようと思います。
+
+![BallTexture](./img/BallTexture.png)
+
+[ここをクリックでダウンロード](./img/BallTexture.png)
+
+ダウンロードしたら、`Assets` にドラッグアンドドロップしてください。
+
+Assets で右クリック -> `Create` -> `Material` を選択
+
+マテリアルの名前を `BallMaterial` に変更してください。
+
+`BallMaterial` を選択し、`Inspector` で `Base Map` の `Texture` に `BallTexture` をドラッグアンドドロップしてください。
+
+![Material](./img/12.2.1.webp)
+
+`BallMaterial` を Hierarchy の `Sphere` にドラッグアンドドロップしてください。
+
+![Material](./img/12.2.2.webp)
+
+ボールの見た目が変わっていることがわかります。
+
+再生ボタンを押してみてください。
+
+![ChangeBall](./img/12.2.1.gif)
