@@ -1007,3 +1007,25 @@ Assets で右クリック -> `Create` -> `Material` を選択
 再生ボタンを押してみてください。
 
 ![ChangeBall](./img/12.2.1.gif)
+
+# 13. 音を鳴らす
+
+ここでは、ボールが得点に触れたときに音を鳴らしたり、BGMを鳴らす処理を追加します。
+
+今回は、ボールを取ったときの音に効果音ラボの音、BGMにはNCSの音を使います。
+
+[効果音ラボ](https://soundeffect-lab.info/sound/button/)
+
+[NCS](https://ncs.io/)
+
+この中から、好きな音をダウンロードしてください。例では効果音ラボから `成功音` 、NCS から `Cartoon, Jéja - On & On (feat. Daniel Levi) [NCS Release]` `Diamond Eyes - Worship [NCS Release]` `Egzod, Maestro Chives, Neoni - Royalty [NCS Release]` をダウンロードしました
+
+ダウンロードしたら、`Assets` にドラッグアンドドロップしてください。
+
+![Sound](./img/13.1.1.webp)
+
+## 13.1. 得点を取ったときの効果音を鳴らす
+
+Hierarchy で `Sphere` を選択し、`Inspector` で `Add Component` をクリック -> `Audio` -> `Audio Source` を選択
+
+`BallController` を開いてください。
