@@ -8,13 +8,15 @@ public class BallController : MonoBehaviour
 {
     private Rigidbody rb;
     private int score = 0;
+	private AudioSource audioSource;
     [SerializeField] private Text scoreText;
+	[SerializeField] private AudioClip ScoreSound;
 
 	// Start is called before the first frame update
 	void Start()
     {
         rb = GetComponent<Rigidbody>();
-    }
+		audioSource = GetComponent<AudioSource>();    }
 
     // Update is called once per frame
     void Update()
@@ -49,6 +51,7 @@ public class BallController : MonoBehaviour
 			Debug.Log("Score: " + score);
 			Destroy(other.gameObject);
 			scoreText.text = "Score: " + score;
+			audioSource.PlayOneShot(ScoreSound);
 			if (score == 10)
 			{
 				SceneManager.LoadScene("GameClear");
