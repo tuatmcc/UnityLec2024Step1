@@ -1028,4 +1028,88 @@ Assets で右クリック -> `Create` -> `Material` を選択
 
 Hierarchy で `Sphere` を選択し、`Inspector` で `Add Component` をクリック -> `Audio` -> `Audio Source` を選択
 
-`BallController` を開いてください。
+`BallController` を開いて以下を追加してください。
+
+```csharp title="BallController.cs" showLineNumbers
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class BallController : MonoBehaviour
+{
+    private Rigidbody rb;
+    private int score = 0;
++	private AudioSource audioSource;
+    [SerializeField] private Text scoreText;
++	[SerializeField] private AudioClip ScoreSound;
+
+	// Start is called before the first frame update
+	void Start()
+    {
+        rb = GetComponent<Rigidbody>();
++		audioSource = GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.W))
+		{
+			rb.AddForce(new Vector3(0, 0, 1));
+		}
+
+        if(Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(new Vector3(0, 0, -1));
+		}
+
+        if(Input.GetKey(KeyCode.A))
+		{
+			rb.AddForce(new Vector3(-1, 0, 0));
+        }
+
+		if(Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(new Vector3(1, 0, 0));
+		}
+    }
+
+    private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.name == "Score(Clone)")
+		{
+			score++;
+			Debug.Log("Score: " + score);
+			Destroy(other.gameObject);
+			scoreText.text = "Score: " + score;
++			audioSource.PlayOneShot(ScoreSound);
+			if (score == 10)
+			{
+				SceneManager.LoadScene("GameClear");
+			}
+		}
+	}
+}
+```
+
+`Sphere` の Inspector から `Add Component` -> `Audio` -> `Audio Source` を選択
+
+`Sphere` の `BallController` の Inspector にある `Score Sound` に `成功音` をドラッグアンドドロップしてください。
+
+![Sound](./img/13.1.2.webp)
+
+再生ボタンを押してみてください。スコアにふれると音が鳴ることがわかります。
+
+## 13.2. BGMを鳴らす
+
+`Hierarchy` で `Main Camera` を選択し、`Inspector` で `Add Component` をクリック -> `Audio` -> `Audio Source` を選択
+
+`Main Camera` の Inspector にある `Audio Source` の `AudioClip` にお好きな曲をドラッグアンドドロップしてください。そして、 `Play On Awake` と `Loop` にチェックを入れてください。
+
+![Sound](./img/13.2.1.webp)
+
+これを他の2つのシーン (`Title`, `GameClear`) にも行ってください。
+
+再生ボタンを押してみてください。BGMが流れることがわかります。

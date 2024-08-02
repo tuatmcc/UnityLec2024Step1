@@ -43,7 +43,6 @@ public class BallController : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-	//private void OnCollisionEnter(Collision collision)
 	{
 		if (other.gameObject.name == "Score(Clone)")
 		{
