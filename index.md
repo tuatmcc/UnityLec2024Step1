@@ -20,8 +20,6 @@ author: "sugawa197203"
 
 * Transform
   * 座標移動
-    * Quaternion は詳しく触れない
-      * `Quaternion.Euler` で済ませる
   * 回転
 * Rigidbody
   * 自由落下
@@ -31,10 +29,6 @@ author: "sugawa197203"
     * OnCollision
     * OnTrigger
 * Prefab
-  * Mesh
-    * 別にそんなに深く触れない
-  * MeshRenderer
-    * 別にそんなに深く触れない
 * AudioSource
 * AudioListener
 * Camera
@@ -64,7 +58,6 @@ author: "sugawa197203"
 * [SerializeField]
 * Start
 * Update
-* FixedUpdate
 * GetComponent
 * OnCollisionEnter
 * OnTriggerEnter
